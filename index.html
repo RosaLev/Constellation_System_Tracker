@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Constellation</title>
+<title>System Tracker v5 Mobile</title>
 <style>
 :root{--bg:#101218;--panel:#171b24;--panel2:#202633;--text:#eef2ff;--muted:#a8b0c7;--accent:#8b5cf6;--accent2:#ec4899;--border:#31384a;--good:#22c55e;--warn:#f59e0b;--bad:#ef4444;--shadow:rgba(0,0,0,.24)}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#0e1117,#131826);color:var(--text)}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#0e1117,#131826);color:var(--text);overflow-x:hidden}
 .wrap{max-width:1680px;margin:0 auto;padding:20px}h1,h2,h3,p{margin:0}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
-.layout{display:grid;grid-template-columns:minmax(440px,520px) 1fr;gap:16px}@media (max-width:1250px){.layout{grid-template-columns:1fr}}.main-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:16px}@media (max-width:1180px){.main-grid{grid-template-columns:1fr}}
-.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:16px;margin-bottom:16px;box-shadow:0 10px 28px var(--shadow)}input,select,textarea,button{font:inherit}input,select,textarea{width:100%;padding:12px 14px;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:12px;margin-top:8px;min-height:46px}textarea{min-height:82px;resize:vertical}
+.layout{display:grid;grid-template-columns:minmax(440px,520px) minmax(0,1fr);gap:16px}@media (max-width:1250px){.layout{grid-template-columns:1fr}}.main-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:16px}@media (max-width:1180px){.main-grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:16px;margin-bottom:16px;box-shadow:0 10px 28px var(--shadow);min-width:0}input,select,textarea,button{font:inherit}input,select,textarea{width:100%;padding:12px 14px;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:12px;margin-top:8px;min-height:46px}textarea{min-height:82px;resize:vertical}
 button{padding:12px 16px;border-radius:12px;border:none;cursor:pointer;color:var(--btn-text);background:var(--btn-neutral);margin-top:8px;min-height:46px}.primary{background:linear-gradient(90deg,var(--accent),var(--accent2))}.warn{background:var(--warn);color:#111}.bad{background:var(--bad)}.ghost{background:transparent;border:1px solid var(--border)}.good{background:var(--good)}
 .row{display:flex;gap:8px;flex-wrap:wrap}.split{display:grid;grid-template-columns:1fr 1fr;gap:8px}.triple{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}@media (max-width:760px){.split,.triple{grid-template-columns:1fr}}.muted{color:var(--muted)}.small{font-size:.92rem}.tiny{font-size:.82rem}
 .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#261f3f;border:1px solid #4b3b76;font-weight:700;margin:4px 6px 0 0}.dot{width:12px;height:12px;border-radius:999px;display:inline-block;border:1px solid rgba(255,255,255,.22);flex:0 0 auto}
@@ -19,7 +19,7 @@ button{padding:12px 16px;border-radius:12px;border:none;cursor:pointer;color:var
 .jump-link{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:12px;border:1px solid var(--border);background:transparent;color:var(--text);text-decoration:none;min-height:46px;flex:1 1 calc(50% - 8px)}
 .jump-link:active{transform:translateY(1px)}.currentbox{display:grid;gap:8px}.profile-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .custom-row{display:grid;grid-template-columns:minmax(120px,1fr) minmax(160px,1.3fr) auto;gap:8px;align-items:start}@media (max-width:760px){.custom-row{grid-template-columns:1fr}}.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.legend-item{display:inline-flex;align-items:center;gap:6px;font-size:.84rem;color:var(--muted);border:1px solid var(--border);background:#111722;border-radius:999px;padding:6px 10px}
-.chart-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.range-btn{margin-top:0;padding:7px 10px;font-size:.84rem}.range-btn.active{background:linear-gradient(90deg,var(--accent),var(--accent2))}.canvas-wrap{overflow:auto;border:1px solid var(--border);background:#0f1420;border-radius:16px;padding:10px}#timelineCanvas{display:block;max-width:none;background:linear-gradient(180deg,#101623,#0d1320);border-radius:12px}.file-input{padding:8px;border:1px dashed var(--border);border-radius:12px}
+.chart-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.range-btn{margin-top:0;padding:7px 10px;font-size:.84rem}.range-btn.active{background:linear-gradient(90deg,var(--accent),var(--accent2))}.canvas-wrap{display:block;overflow-x:auto;overflow-y:hidden;border:1px solid var(--border);background:#0f1420;border-radius:16px;padding:10px;max-width:100%;width:100%;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}#timelineCanvas{display:block;max-width:none;background:linear-gradient(180deg,#101623,#0d1320);border-radius:12px}.file-input{padding:8px;border:1px dashed var(--border);border-radius:12px}
 .multiline-field{min-height:72px}
 
 .top{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,rgba(14,17,23,.98),rgba(19,24,38,.96));backdrop-filter:blur(8px);padding-bottom:8px}
@@ -62,16 +62,24 @@ canvas{touch-action:pan-x pan-y}
   .mobile-tabbar{display:flex}
 }
 
+
+.layout > *{min-width:0}
+.main-grid > *{min-width:0}
+.card{overflow:hidden}
+
 </style>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0f0f13">
 </head>
 <body>
-<div class="wrap"><div class="top"><div><h1>Constellation</h1><p class="muted">Local-first. IndexedDB storage, profiles, avatars, chart ranges, and PNG export.</p></div><div class="row"><button class="ghost" id="exportBtn">Export JSON</button><button class="ghost" id="importBtn">Import JSON</button><button class="ghost" id="exportChartBtn">Export chart PNG</button><input id="importFile" type="file" accept="application/json" style="display:none" /></div></div>
+<div class="wrap"><div class="top"><div><h1>System Tracker v5 Mobile</h1><p class="muted">Local-first. IndexedDB storage, profiles, avatars, chart ranges, and PNG export.</p></div><div class="row"><button class="ghost" id="exportBtn">Export JSON</button><button class="ghost" id="importBtn">Import JSON</button><button class="ghost" id="exportChartBtn">Export chart PNG</button><input id="importFile" type="file" accept="application/json" style="display:none" /></div></div>
+
+<div class="card">
+  <h2>Mobile notes</h2>
+  <p class="muted small" style="margin-top:8px">This build is tuned for phones and tablets: bigger tap targets, stacked layout, and a stickier top bar. iPhone users should open it in Safari and use <strong>Share → Add to Home Screen</strong>. Android users can use <strong>Install app</strong> in Chrome/Edge/Opera.</p>
+</div>
 
 <div class="card">
   <h2>Button colors</h2>
-  
+  <p class="muted small" style="margin-top:8px">Change the layout button colors and keep them saved in this browser with IndexedDB.</p>
   <div class="triple" style="margin-top:10px">
     <div>
       <label class="small muted">Primary start</label>
@@ -114,13 +122,13 @@ canvas{touch-action:pan-x pan-y}
 
 <div class="layout"><aside>
 <div class="card"><h2>Alter list</h2><p class="muted small" style="margin-top:8px">Alphabetical, color-coded, avatar-ready.</p><label class="small muted" for="alterName" style="display:block;margin-top:10px;">Name</label><input id="alterName" placeholder="Add alter name" /><div class="split" style="margin-top:8px;"><div><label class="small muted" for="alterColor">Color</label><input id="alterColor" type="color" value="#8b5cf6" /></div><div style="display:flex;align-items:end"><button class="primary" id="addAlterBtn" style="width:100%">Add alter</button></div></div><div class="sidebar-list" id="alterList"></div></div>
-<div class="card"><h2>Edit profile</h2><div id="profileEditor"></div></div>
+<div class="card"><h2>Edit profile</h2><p class="muted small" style="margin-top:8px">Select an alter from the list to edit their profile. Longer answers now expand instead of getting chopped.</p><div id="profileEditor"></div></div>
 </aside><main>
 <div class="card"><h2>Current front</h2><div class="currentbox" style="margin-top:12px"><div id="currentFronts"></div><div class="muted small" id="currentSince">Log someone into front to start tracking.</div></div></div>
-<div class="card"><div class="row" style="justify-content:space-between;align-items:center"><div><h2>Front history chart</h2></div><div class="chart-controls" id="rangeButtons"></div></div><div class="canvas-wrap" style="margin-top:12px"><canvas id="timelineCanvas"></canvas></div><div class="legend" id="legend"></div></div>
+<div class="card"><div class="row" style="justify-content:space-between;align-items:center"><div><h2>Front history chart</h2><div class="muted tiny" style="margin-top:4px">PC chart rebuild: 3-day viewport feel, chart-only horizontal scroll, every hour across the top, dates at the bottom. Containment fix applied.</div><p class="muted small" style="margin-top:8px">Alter rows on the Y axis, every hour shown across the top, and days/dates along the bottom. The chart section scrolls sideways instead of the whole page.</p></div><div class="chart-controls" id="rangeButtons"></div></div><div class="canvas-wrap" style="margin-top:12px"><canvas id="timelineCanvas"></canvas></div><div class="legend" id="legend"></div></div>
 <div class="main-grid"><div>
-<div class="card"><h2>Quick log</h2><label class="small muted" for="name">Name</label><input id="name" placeholder="Name fronting" list="alterNamesList" /><datalist id="alterNamesList"></datalist><label class="small muted" for="noteText" style="display:block;margin-top:10px;">Optional note</label><textarea id="noteText" placeholder="Anything relevant"></textarea><div class="row"><button class="primary" onclick="logFront()">Add to front</button><button class="warn" onclick="moveOutByInput()">Move selected out of front</button><button onclick="logNoteOnly()">Note</button></div></div>
-<div class="card"><h2>Manual correction</h2><label class="small muted" for="editEntrySelect" style="display:block;margin-top:10px;">Select front session</label><select id="editEntrySelect"></select><div class="split"><div><label class="small muted" for="editStartTime" style="display:block;margin-top:10px;">Correct start time</label><input id="editStartTime" type="datetime-local" /></div><div><label class="small muted" for="editEndTime" style="display:block;margin-top:10px;">Correct end time</label><input id="editEndTime" type="datetime-local" /></div></div><div class="row"><button class="primary" onclick="applyTimeEdit()">Save corrected times</button><button class="ghost" onclick="clearEndTimeForSelected()">Clear end time / re-open</button></div></div>
+<div class="card"><h2>Quick log</h2><label class="small muted" for="name">Name</label><input id="name" placeholder="Name fronting" list="alterNamesList" /><datalist id="alterNamesList"></datalist><label class="small muted" for="noteText" style="display:block;margin-top:10px;">Optional note</label><textarea id="noteText" placeholder="Anything relevant"></textarea><div class="row"><button class="primary" onclick="logFront()">Add to front</button><button class="warn" onclick="moveOutByInput()">Move selected out of front</button><button onclick="logNoteOnly()">Note</button></div><p class="muted tiny" style="margin-top:10px">“Add to front” still allows multiple people in front together.</p></div>
+<div class="card"><h2>Manual correction</h2><p class="muted small" style="margin-top:8px">Fix start/end times after the fact.</p><label class="small muted" for="editEntrySelect" style="display:block;margin-top:10px;">Select front session</label><select id="editEntrySelect"></select><div class="split"><div><label class="small muted" for="editStartTime" style="display:block;margin-top:10px;">Correct start time</label><input id="editStartTime" type="datetime-local" /></div><div><label class="small muted" for="editEndTime" style="display:block;margin-top:10px;">Correct end time</label><input id="editEndTime" type="datetime-local" /></div></div><div class="row"><button class="primary" onclick="applyTimeEdit()">Save corrected times</button><button class="ghost" onclick="clearEndTimeForSelected()">Clear end time / re-open</button></div></div>
 </div><div><div class="card"><div class="row" style="justify-content:space-between;align-items:center"><h2>History</h2><button class="bad" onclick="wipeAll()">Wipe all data</button></div><div id="log" style="margin-top:14px"></div></div></div></div>
 </main></div></div>
 <script>
@@ -250,7 +258,7 @@ function getAlterById(id){return state.alters.find(a=>a.id===id)||null}function 
 function addAlter(){const name=normalizeName(document.getElementById('alterName').value),color=document.getElementById('alterColor').value||'#8b5cf6';if(!name)return;const alter=getOrCreateAlterByName(state,name,color);alter.color=color;state.selectedAlterId=alter.id;document.getElementById('alterName').value='';saveState();renderAll()}function updateAlterColor(id,color){const alter=getAlterById(id);if(!alter)return;alter.color=color;saveState();renderAll()}function renameAlter(id){const alter=getAlterById(id);if(!alter)return;const typed=prompt('Rename alter:',alter.name);if(typed===null)return;const newName=normalizeName(typed);if(!newName)return;alter.name=newName;saveState();renderAll()}function deleteAlter(id){const alter=getAlterById(id);if(!alter)return;if(!confirm('Delete '+alter.name+' from the alter list? Existing sessions and notes will stay, but show as Unknown if not matched.'))return;state.alters=state.alters.filter(a=>a.id!==id);if(state.selectedAlterId===id)state.selectedAlterId=state.alters[0]?.id||null;saveState();renderAll()}function selectAlter(id){state.selectedAlterId=id;saveState();renderAll()}
 function logFront(){const alter=ensureInputAlter();if(!alter)return;const note=getInputNote();const existing=getActiveSessionForAlter(alter.id);if(existing){if(note)existing.startNote=existing.startNote?(existing.startNote+' | '+note):note}else state.sessions.push({id:uid(),alterId:alter.id,start:nowIso(),end:null,startNote:note,endNote:'',autoClosedBy:''});saveState();clearInputs();renderAll()}function moveOutByInput(){const alter=ensureInputAlter();if(!alter)return;const active=getActiveSessionForAlter(alter.id);if(!active)return alert(alter.name+' is not currently logged in front.');const note=getInputNote();active.end=nowIso();if(note)active.endNote=note;saveState();clearInputs();renderAll()}function toggleFrontById(id){const alter=getAlterById(id);if(!alter)return;document.getElementById('name').value=alter.name;const active=getActiveSessionForAlter(id);if(active)active.end=nowIso();else state.sessions.push({id:uid(),alterId:id,start:nowIso(),end:null,startNote:'',endNote:'',autoClosedBy:''});saveState();renderAll()}function logNoteOnly(){const name=getInputName(),note=getInputNote();if(!note)return alert('Put a note in first.');let alterId=null;if(name)alterId=getOrCreateAlterByName(state,name).id;state.notes.push({id:uid(),alterId,time:nowIso(),note});saveState();clearInputs();renderAll()}
 function renderAlterList(){const list=document.getElementById('alterList'),dl=document.getElementById('alterNamesList');const alters=[...state.alters].sort((a,b)=>a.name.localeCompare(b.name));dl.innerHTML=alters.map(a=>'<option value="'+escapeHtml(a.name)+'"></option>').join('');if(alters.length===0){list.innerHTML='<div class="empty">No alters saved yet.</div>';return}list.innerHTML=alters.map(a=>{const active=!!getActiveSessionForAlter(a.id),selected=state.selectedAlterId===a.id,avatar=a.avatar?`<img class="avatar" src="${a.avatar}" alt="">`:`<span class="dot" style="background:${escapeHtml(a.color)}"></span>`;return `<div class="alter" style="${selected?'outline:2px solid rgba(139,92,246,.6);':''}"><div class="alter-top"><div class="alter-name">${avatar}<span>${escapeHtml(a.name)}</span></div><span class="tiny muted">${active?'In front':'Idle'}</span></div><div class="row"><button class="${active?'warn':'primary'} mini-btn" onclick="toggleFrontById('${a.id}')">${active?'Move out':'Add to front'}</button><button class="ghost mini-btn" onclick="selectAlter('${a.id}')">Profile</button><button class="ghost mini-btn" onclick="renameAlter('${a.id}')">Rename</button></div><div class="split" style="margin-top:8px"><input type="color" value="${escapeHtml(a.color)}" onchange="updateAlterColor('${a.id}', this.value)" /><button class="bad mini-btn" onclick="deleteAlter('${a.id}')">Delete</button></div></div>`}).join('')}
-function renderProfileEditor(){const wrap=document.getElementById('profileEditor'),alter=getAlterById(state.selectedAlterId);if(!alter){wrap.innerHTML='<div class="empty" style="margin-top:12px">Select an alter to edit.</div>';return}const customRows=alter.customFields.map(cf=>`<div class="custom-row" style="margin-top:8px"><textarea class="multiline-field" placeholder="Field name" onchange="updateCustomField('${alter.id}','${cf.id}','key', this.value)">${escapeHtml(cf.key)}</textarea><textarea class="multiline-field" placeholder="Value" onchange="updateCustomField('${alter.id}','${cf.id}','value', this.value)">${escapeHtml(cf.value)}</textarea><button class="bad" onclick="removeCustomField('${alter.id}','${cf.id}')">Remove</button></div>`).join('');wrap.innerHTML=`<div class="profile-head" style="margin-top:12px">${alter.avatar?`<img class="avatar lg" src="${alter.avatar}" alt="">`:`<span class="dot" style="background:${escapeHtml(alter.color)};width:22px;height:22px"></span>`}<div><div style="font-weight:700">${escapeHtml(alter.name)}</div></div></div><label class="small muted">Avatar image</label><input class="file-input" type="file" accept="image/*" onchange="handleAvatarUpload('${alter.id}', this.files[0])" />${alter.avatar?`<button class="ghost" onclick="clearAvatar('${alter.id}')">Clear avatar</button>`:''}<label class="small muted" style="display:block;margin-top:10px">Notes</label><textarea onchange="updateAlterNotes('${alter.id}', this.value)">${escapeHtml(alter.notes)}</textarea><div class="split" style="margin-top:8px"><div><label class="small muted">Role</label><input value="${escapeHtml(alter.fields.role)}" onchange="updateAlterField('${alter.id}','role', this.value)" /></div><div><label class="small muted">Date joined</label><input value="${escapeHtml(alter.fields.dateJoined)}" onchange="updateAlterField('${alter.id}','dateJoined', this.value)" /></div></div><div class="split" style="margin-top:8px"><div><label class="small muted">Pronouns</label><input value="${escapeHtml(alter.fields.pronouns)}" onchange="updateAlterField('${alter.id}','pronouns', this.value)" /></div><div><label class="small muted">Subsystem</label><input value="${escapeHtml(alter.fields.subsystem)}" onchange="updateAlterField('${alter.id}','subsystem', this.value)" /></div></div><label class="small muted" style="display:block;margin-top:10px">Front tendency</label><input value="${escapeHtml(alter.fields.frontTendency)}" onchange="updateAlterField('${alter.id}','frontTendency', this.value)" /><div style="margin-top:14px;font-weight:700">Additional fields</div><div id="customFieldsBlock">${customRows||'<div class="empty" style="margin-top:10px">No custom fields yet.</div>'}</div><button class="primary" onclick="addCustomField('${alter.id}')">Add custom field</button>`}
+function renderProfileEditor(){const wrap=document.getElementById('profileEditor'),alter=getAlterById(state.selectedAlterId);if(!alter){wrap.innerHTML='<div class="empty" style="margin-top:12px">Select an alter to edit.</div>';return}const customRows=alter.customFields.map(cf=>`<div class="custom-row" style="margin-top:8px"><textarea class="multiline-field" placeholder="Field name" onchange="updateCustomField('${alter.id}','${cf.id}','key', this.value)">${escapeHtml(cf.key)}</textarea><textarea class="multiline-field" placeholder="Value" onchange="updateCustomField('${alter.id}','${cf.id}','value', this.value)">${escapeHtml(cf.value)}</textarea><button class="bad" onclick="removeCustomField('${alter.id}','${cf.id}')">Remove</button></div>`).join('');wrap.innerHTML=`<div class="profile-head" style="margin-top:12px">${alter.avatar?`<img class="avatar lg" src="${alter.avatar}" alt="">`:`<span class="dot" style="background:${escapeHtml(alter.color)};width:22px;height:22px"></span>`}<div><div style="font-weight:700">${escapeHtml(alter.name)}</div><div class="muted tiny">Everything here is optional.</div></div></div><label class="small muted">Avatar image</label><input class="file-input" type="file" accept="image/*" onchange="handleAvatarUpload('${alter.id}', this.files[0])" />${alter.avatar?`<button class="ghost" onclick="clearAvatar('${alter.id}')">Clear avatar</button>`:''}<label class="small muted" style="display:block;margin-top:10px">Notes</label><textarea onchange="updateAlterNotes('${alter.id}', this.value)">${escapeHtml(alter.notes)}</textarea><div class="split" style="margin-top:8px"><div><label class="small muted">Role</label><input value="${escapeHtml(alter.fields.role)}" onchange="updateAlterField('${alter.id}','role', this.value)" /></div><div><label class="small muted">Date joined</label><input value="${escapeHtml(alter.fields.dateJoined)}" onchange="updateAlterField('${alter.id}','dateJoined', this.value)" /></div></div><div class="split" style="margin-top:8px"><div><label class="small muted">Pronouns</label><input value="${escapeHtml(alter.fields.pronouns)}" onchange="updateAlterField('${alter.id}','pronouns', this.value)" /></div><div><label class="small muted">Subsystem</label><input value="${escapeHtml(alter.fields.subsystem)}" onchange="updateAlterField('${alter.id}','subsystem', this.value)" /></div></div><label class="small muted" style="display:block;margin-top:10px">Front tendency</label><input value="${escapeHtml(alter.fields.frontTendency)}" onchange="updateAlterField('${alter.id}','frontTendency', this.value)" /><div style="margin-top:14px;font-weight:700">Custom fields</div><div class="muted tiny" style="margin-top:4px">Anything you want. Role variants, date fused, triggers, whatever.</div><div id="customFieldsBlock">${customRows||'<div class="empty" style="margin-top:10px">No custom fields yet.</div>'}</div><button class="primary" onclick="addCustomField('${alter.id}')">Add custom field</button>`}
 function updateAlterField(alterId,field,value){const alter=getAlterById(alterId);if(!alter)return;alter.fields[field]=value;saveState()}function updateAlterNotes(alterId,value){const alter=getAlterById(alterId);if(!alter)return;alter.notes=value;saveState()}function addCustomField(alterId){const alter=getAlterById(alterId);if(!alter)return;alter.customFields.push({id:uid(),key:'',value:''});saveState();renderProfileEditor()}function updateCustomField(alterId,fieldId,which,value){const alter=getAlterById(alterId);if(!alter)return;const cf=alter.customFields.find(x=>x.id===fieldId);if(!cf)return;cf[which]=value;saveState()}function removeCustomField(alterId,fieldId){const alter=getAlterById(alterId);if(!alter)return;alter.customFields=alter.customFields.filter(x=>x.id!==fieldId);saveState();renderProfileEditor()}
 function handleAvatarUpload(alterId,file){if(!file)return;const reader=new FileReader();reader.onload=()=>{const alter=getAlterById(alterId);if(!alter)return;alter.avatar=reader.result;saveState();renderAll()};reader.readAsDataURL(file)}function clearAvatar(alterId){const alter=getAlterById(alterId);if(!alter)return;alter.avatar='';saveState();renderAll()}
 function renderCurrent(){const currentFronts=document.getElementById('currentFronts'),sinceEl=document.getElementById('currentSince'),active=getActiveSessions();if(active.length===0){currentFronts.innerHTML='<div class="pill">Nobody currently logged</div>';sinceEl.textContent='Log someone into front to start tracking.';return}currentFronts.innerHTML=active.map(s=>{const alter=getAlterById(s.alterId),avatar=alter?.avatar?`<img class="avatar" src="${alter.avatar}" alt="">`:`<span class="dot" style="background:${escapeHtml(getAlterColor(s.alterId))}"></span>`;return `<div class="pill">${avatar}${escapeHtml(getAlterName(s.alterId))}</div>`}).join('');sinceEl.innerHTML=active.map(s=>`${escapeHtml(getAlterName(s.alterId))} since ${escapeHtml(formatDate(s.start))}`).join('<br>')}
@@ -262,7 +270,202 @@ function renderRangeButtons(){const wrap=document.getElementById('rangeButtons')
 function getVisibleDays(){const opt=RANGE_OPTIONS.find(x=>x.key===state.chartRange)||RANGE_OPTIONS[0],now=new Date();if(opt.days){const days=[];for(let i=opt.days-1;i>=0;i--){const d=new Date(now);d.setDate(now.getDate()-i);d.setHours(0,0,0,0);days.push(d)}return days}if(state.sessions.length===0){const d=new Date();d.setHours(0,0,0,0);return[d]}const oldest=new Date(Math.min(...state.sessions.map(s=>new Date(s.start).getTime())));oldest.setHours(0,0,0,0);const days=[],cursor=new Date(oldest),end=new Date();end.setHours(0,0,0,0);while(cursor<=end){days.push(new Date(cursor));cursor.setDate(cursor.getDate()+1)}return days}
 function roundRect(ctx,x,y,w,h,r,fill,stroke){if(w<2*r)r=w/2;if(h<2*r)r=h/2;ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();if(fill)ctx.fill();if(stroke)ctx.stroke()}
 function drawAvatar(ctx,src,x,y,r){const img=new Image();img.onload=()=>{ctx.save();ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.closePath();ctx.clip();ctx.drawImage(img,x-r,y-r,r*2,r*2);ctx.restore();ctx.strokeStyle='rgba(255,255,255,0.7)';ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke()};img.src=src}
-function renderTimeline(){const canvas=document.getElementById('timelineCanvas'),ctx=canvas.getContext('2d'),days=getVisibleDays(),leftLabel=74,topHeader=28,hourWidth=42,rowHeight=64,rowGap=10,dayWidth=hourWidth*24,width=leftLabel+dayWidth+18,height=topHeader+days.length*(rowHeight+rowGap)+24;canvas.width=width;canvas.height=height;canvas.style.width=width+'px';canvas.style.height=Math.min(height,1600)+'px';ctx.clearRect(0,0,width,height);ctx.fillStyle='#101623';ctx.fillRect(0,0,width,height);ctx.font='12px Arial';ctx.textAlign='center';ctx.textBaseline='middle';for(let h=0;h<24;h++){const x=leftLabel+h*hourWidth+hourWidth/2;ctx.fillStyle='#a8b0c7';ctx.fillText(String(h).padStart(2,'0'),x,12)}const legend=document.getElementById('legend');legend.innerHTML=[...state.alters].sort((a,b)=>a.name.localeCompare(b.name)).map(a=>`<div class="legend-item">${a.avatar?`<img class="avatar" src="${a.avatar}" alt="">`:`<span class="dot" style="background:${escapeHtml(a.color)}"></span>`}${escapeHtml(a.name)}</div>`).join('');days.forEach((day,idx)=>{const dayStart=new Date(day),dayEnd=new Date(day);dayEnd.setHours(23,59,59,999);const y=topHeader+idx*(rowHeight+rowGap);ctx.textAlign='left';ctx.fillStyle='#d5def5';ctx.font='14px Arial';ctx.fillText(day.toLocaleDateString(undefined,{month:'short',day:'numeric'}),8,y+rowHeight/2);ctx.fillStyle='#0d1320';roundRect(ctx,leftLabel,y,dayWidth,rowHeight,12,true,false);ctx.strokeStyle='#31384a';roundRect(ctx,leftLabel,y,dayWidth,rowHeight,12,false,true);ctx.strokeStyle='rgba(255,255,255,0.07)';ctx.lineWidth=1;for(let h=0;h<=24;h++){const gx=leftLabel+h*hourWidth;ctx.beginPath();ctx.moveTo(gx,y);ctx.lineTo(gx,y+rowHeight);ctx.stroke()}const sessions=state.sessions.map(s=>{const start=new Date(s.start),end=s.end?new Date(s.end):new Date();if(end<dayStart||start>dayEnd)return null;const segmentStart=start<dayStart?dayStart:start,segmentEnd=end>dayEnd?dayEnd:end;return{id:s.id,alterId:s.alterId,start:segmentStart,end:segmentEnd}}).filter(Boolean).sort((a,b)=>new Date(a.start)-new Date(b.start));const laneEnds=[];sessions.forEach(seg=>{let lane=0;while(laneEnds[lane]&&laneEnds[lane]>seg.start.getTime())lane++;laneEnds[lane]=seg.end.getTime();const startMinutes=seg.start.getHours()*60+seg.start.getMinutes(),endMinutes=seg.end.getHours()*60+seg.end.getMinutes(),x=leftLabel+(startMinutes/60)*hourWidth,w=Math.max(((Math.max(endMinutes,startMinutes+1)-startMinutes)/60)*hourWidth,2),barY=y+8+lane*16,color=getAlterColor(seg.alterId);ctx.fillStyle=color;roundRect(ctx,x,barY,w,12,6,true,false);ctx.strokeStyle='rgba(255,255,255,0.20)';roundRect(ctx,x,barY,w,12,6,false,true);const alter=getAlterById(seg.alterId);if(alter?.avatar)drawAvatar(ctx,alter.avatar,x+6,barY+6,10)})})}
+
+
+
+function renderTimeline(){
+  const canvas = document.getElementById('timelineCanvas');
+  const ctx = canvas.getContext('2d');
+  const now = new Date();
+
+  const days = getVisibleDays().slice(-7);
+  const startBoundary = new Date(days[0] || now);
+  startBoundary.setHours(0,0,0,0);
+  const endBoundary = new Date(days[days.length-1] || now);
+  endBoundary.setHours(23,59,59,999);
+
+  const visibleSessions = state.sessions.filter(s => {
+    const start = new Date(s.start);
+    const end = s.end ? new Date(s.end) : now;
+    return !(end < startBoundary || start > endBoundary);
+  });
+
+  const visibleAlterIds = [...new Set(visibleSessions.map(s => s.alterId))];
+  const visibleAlters = visibleAlterIds
+    .map(id => getAlterById(id))
+    .filter(Boolean)
+    .sort((a,b) => a.name.localeCompare(b.name));
+
+  const legend = document.getElementById('legend');
+  legend.innerHTML = visibleAlters.map(a =>
+    `<div class="legend-item">${a.avatar ? `<img class="avatar" src="${a.avatar}" alt="">` : `<span class="dot" style="background:${escapeHtml(a.color)}"></span>`}${escapeHtml(a.name)}</div>`
+  ).join('');
+
+  if(!days.length || !visibleAlters.length){
+    canvas.width = 980;
+    canvas.height = 240;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = '#101623';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = '#d5def5';
+    ctx.font = '16px Arial';
+    ctx.fillText('No front data in the visible period yet.', 24, 80);
+    return;
+  }
+
+  // More compact than the previous build, but still readable.
+  const hourWidth = 22;
+  const dayWidth = 24 * hourWidth;     // 528px per day
+  const leftLabel = 160;
+  const topHeader = 62;
+  const bottomAxis = 46;
+  const rowHeight = 58;
+  const rowGap = 18;
+  const barHeight = 24;
+  const gridTop = topHeader;
+  const gridBottom = topHeader + visibleAlters.length * (rowHeight + rowGap) - rowGap;
+  const width = leftLabel + days.length * dayWidth + 30;
+  const height = gridBottom + bottomAxis + 28;
+
+  canvas.width = width;
+  canvas.height = height;
+  canvas.style.width = width + 'px';
+  canvas.style.height = height + 'px';
+
+  ctx.clearRect(0,0,width,height);
+  ctx.fillStyle = '#101623';
+  ctx.fillRect(0,0,width,height);
+
+  days.forEach((day, dayIdx) => {
+    const x = leftLabel + dayIdx * dayWidth;
+
+    ctx.fillStyle = '#0d1320';
+    roundRect(ctx, x, gridTop, dayWidth - 8, gridBottom - gridTop + 6, 12, true, false);
+    ctx.strokeStyle = '#31384a';
+    roundRect(ctx, x, gridTop, dayWidth - 8, gridBottom - gridTop + 6, 12, false, true);
+
+    for(let h = 0; h <= 24; h++){
+      const gx = x + h * hourWidth;
+      ctx.lineWidth = (h % 6 === 0) ? 1.8 : 1;
+      ctx.strokeStyle = (h % 6 === 0) ? 'rgba(255,255,255,0.14)' : 'rgba(255,255,255,0.06)';
+      ctx.beginPath();
+      ctx.moveTo(gx, gridTop);
+      ctx.lineTo(gx, gridBottom + 6);
+      ctx.stroke();
+    }
+
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#d5def5';
+    ctx.font = 'bold 14px Arial';
+    ctx.fillText(day.toLocaleDateString(undefined, {month:'short', day:'numeric'}), x + (dayWidth/2) - 4, gridBottom + 26);
+
+    ctx.fillStyle = '#a8b0c7';
+    ctx.font = '10px Arial';
+    for(let h = 0; h < 24; h++){
+      const hx = x + h * hourWidth + hourWidth/2;
+      ctx.fillText(String(h).padStart(2,'0'), hx, 22);
+    }
+
+    ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+    ctx.lineWidth = 2.2;
+    ctx.beginPath();
+    ctx.moveTo(x, gridTop - 6);
+    ctx.lineTo(x, gridBottom + 8);
+    ctx.stroke();
+  });
+
+  const todayKey = now.toDateString();
+  days.forEach((day, dayIdx) => {
+    if(day.toDateString() !== todayKey) return;
+    const hour = now.getHours();
+    const x = leftLabel + dayIdx * dayWidth + hour * hourWidth;
+    ctx.fillStyle = 'rgba(139,92,246,0.10)';
+    ctx.fillRect(x, gridTop, hourWidth, gridBottom - gridTop + 6);
+  });
+
+  visibleAlters.forEach((alter, rowIdx) => {
+    const y = gridTop + rowIdx * (rowHeight + rowGap);
+    const centerY = y + rowHeight/2;
+
+    ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(leftLabel, centerY);
+    ctx.lineTo(width - 16, centerY);
+    ctx.stroke();
+
+    if(alter.avatar){
+      drawAvatar(ctx, alter.avatar, 20, centerY, 10);
+    } else {
+      ctx.fillStyle = alter.color || '#8b5cf6';
+      ctx.beginPath();
+      ctx.arc(20, centerY, 8, 0, Math.PI*2);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+      ctx.stroke();
+    }
+
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#d5def5';
+    ctx.font = '14px Arial';
+    ctx.fillText(alter.name, 36, centerY);
+  });
+
+  visibleSessions.forEach(session => {
+    const alter = visibleAlters.find(a => a.id === session.alterId);
+    const rowIdx = visibleAlters.findIndex(a => a.id === session.alterId);
+    if(!alter || rowIdx === -1) return;
+
+    const start = new Date(session.start);
+    const end = session.end ? new Date(session.end) : now;
+    const rowY = gridTop + rowIdx * (rowHeight + rowGap) + (rowHeight - barHeight) / 2;
+
+    days.forEach((day, dayIdx) => {
+      const dayStart = new Date(day);
+      dayStart.setHours(0,0,0,0);
+      const dayEnd = new Date(day);
+      dayEnd.setHours(23,59,59,999);
+
+      if(end < dayStart || start > dayEnd) return;
+
+      const segStart = start < dayStart ? dayStart : start;
+      const segEnd = end > dayEnd ? dayEnd : end;
+
+      const startMinutes = segStart.getHours()*60 + segStart.getMinutes();
+      const endMinutes = segEnd.getHours()*60 + segEnd.getMinutes();
+      const x = leftLabel + dayIdx * dayWidth + (startMinutes / 60) * hourWidth;
+      const w = Math.max(((Math.max(endMinutes, startMinutes + 1) - startMinutes) / 60) * hourWidth, 8);
+
+      ctx.fillStyle = alter.color || '#8b5cf6';
+      roundRect(ctx, x, rowY, w, barHeight, 11, true, false);
+      ctx.strokeStyle = 'rgba(255,255,255,0.24)';
+      roundRect(ctx, x, rowY, w, barHeight, 11, false, true);
+
+      if(alter.avatar){
+        drawAvatar(ctx, alter.avatar, x + 12, rowY + barHeight/2, 8);
+      }
+
+      if(!session.end && dayIdx === days.findIndex(d => d.toDateString() === now.toDateString())){
+        ctx.strokeStyle = 'rgba(255,255,255,0.7)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(x + w, rowY + 2);
+        ctx.lineTo(x + w, rowY + barHeight - 2);
+        ctx.stroke();
+      }
+    });
+  });
+
+  // Try to default the scroll position toward the newest 3 days without forcing it every render.
+  const wrap = canvas.closest('.canvas-wrap');
+  if(wrap && !wrap.dataset.autoscrolled){
+    const approxViewport = leftLabel + dayWidth * 3;
+    wrap.scrollLeft = Math.max(0, width - approxViewport);
+    wrap.dataset.autoscrolled = '1';
+  }
+}
 function exportChartPNG(){const canvas=document.getElementById('timelineCanvas'),a=document.createElement('a'),stamp=new Date().toISOString().slice(0,10);a.href=canvas.toDataURL('image/png');a.download=`front-chart-${stamp}.png`;a.click()}
 async function wipeAll(){if(!confirm('Wipe all tracker data?'))return;await dbDelete(DATA_KEY);state=defaultState();saveState();renderAll()}function exportJson(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='switch-tracker-v4-data.json';a.click();URL.revokeObjectURL(url)}function importJson(file){const reader=new FileReader();reader.onload=()=>{try{const incoming=JSON.parse(reader.result),base=defaultState();if(Array.isArray(incoming.alters)){base.alters=incoming.alters.map(enrichAlter);base.selectedAlterId=incoming.selectedAlterId||base.alters[0]?.id||null}if(Array.isArray(incoming.sessions))base.sessions=incoming.sessions;if(Array.isArray(incoming.notes))base.notes=incoming.notes;if(incoming.chartRange)base.chartRange=incoming.chartRange;state=base;saveState();renderAll()}catch(e){alert('That JSON file didn\'t work.')}};reader.readAsText(file)}
 
@@ -473,9 +676,4 @@ function setupWorkingMobileTabs(){
 document.addEventListener('DOMContentLoaded', setupWorkingMobileTabs);
 </script>
 
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js');
-}
-</script>
 </body></html>
