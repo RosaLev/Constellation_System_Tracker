@@ -1,6 +1,6 @@
 {
   "name": "System Tracker",
-  "short_name": "Tracker",
+  "short_name": "SysTrack",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f0f13",
